@@ -24,14 +24,15 @@ namespace Poligon3_9_2026b
             Vektor OA = new Vektor(O, A);
             Vektor OB = new Vektor(O, B);
             Console.WriteLine(Vektor.SP(OA, OB));
-            Console.WriteLine(Vektor.VP(OB, OA));*/
-            Tacka A = new Tacka(5, 3);
+            /*Tacka A = new Tacka(5, 3);
             Tacka B = new Tacka(5, 5);
             Tacka prva = new Tacka(3, 2);
             Tacka druga = new Tacka(7, 6);
             Vektor a = new Vektor(prva, druga);
             Console.WriteLine(Ravan.SIS(a,A,B));
-            Console.ReadLine();
+            Console.ReadLine();*/
+            Poligon prvi = Poligon.unos();
+            prvi.snimi();
         }
     }
 }
