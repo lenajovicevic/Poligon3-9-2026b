@@ -33,7 +33,11 @@ namespace Poligon3_9_2026b
         }
         public void stampa()
         {
-
+            Console.WriteLine("Poligon ima {0} temena i ona su:", br_temena);
+            for(int i = 0; i < br_temena; i++)
+            {
+                Console.WriteLine("Tacka {0}: koordinata x - {0}, koordinata y - {0}", i + 1, teme[i].x, teme[i].y);
+            }
         }
         public void snimi()
         {
