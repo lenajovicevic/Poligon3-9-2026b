@@ -36,7 +36,7 @@ namespace Poligon3_9_2026b
             Console.WriteLine("Poligon ima {0} temena i ona su:", br_temena);
             for(int i = 0; i < br_temena; i++)
             {
-                Console.WriteLine("Tacka {0}: koordinata x = {0}, koordinata y = {0}", i + 1, teme[i].x, teme[i].y);
+                Console.WriteLine("Tacka {0}: koordinata x = {1}, koordinata y = {2}", i + 1, teme[i].x, teme[i].y);
             }
         }
         public void snimi()
@@ -52,7 +52,16 @@ namespace Poligon3_9_2026b
         }
         public static Poligon ucitaj()
         {
-            return null;
+            StreamReader ulaz = new StreamReader("poligon.txt");
+            int n = Convert.ToInt32(ulaz.ReadLine());
+            Poligon novi = new Poligon(n);
+            for (int i = 0; i < novi.br_temena; i++)
+            {
+                novi.teme[i] = new Tacka();
+                novi.teme[i].x = Convert.ToDouble(ulaz.ReadLine());
+                novi.teme[i].y = Convert.ToDouble(ulaz.ReadLine());
+            }
+            return novi;
         }
     }
 }
