@@ -23,5 +23,9 @@ namespace Poligon3_9_2026b
         {
             return Math.Sqrt(x * x + y * y);
         }
+        public static bool jednaka(Tacka A, Tacka B)
+        {
+            return (A.x == B.x) && (A.y == B.y);
+        }
     }
 }
