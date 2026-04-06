@@ -31,12 +31,14 @@ namespace Poligon3_9_2026b
             Vektor a = new Vektor(prva, druga);
             Console.WriteLine(Ravan.SIS(a,A,B));
             Console.ReadLine();*/
-            //Poligon prvi = Poligon.unos();
+            Poligon prvi = Poligon.unos();
             //prvi.snimi();
-            Poligon prvi = Poligon.ucitaj();
-            prvi.stampa();
-           /* Poligon prvi = Poligon.ucitaj();
-            prvi.stampa();*/
+            //Poligon prvi = Poligon.ucitaj();
+            //prvi.stampa();
+            /* Poligon prvi = Poligon.ucitaj();
+             prvi.stampa();*/
+            Console.WriteLine("Konveksan = {0}", prvi.konveksan());
+            Console.WriteLine("Povrsina = {0}", prvi.povrsina());
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Poligon3_9_2026b
             Console.WriteLine("Koliko temena?");
             int n = Convert.ToInt32(Console.ReadLine());
             Poligon novi = new Poligon(n);
-            for(int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
                 novi.teme[i] = new Tacka();
                 Console.WriteLine("x koord tacke {0}=", i + 1);
@@ -34,7 +34,7 @@ namespace Poligon3_9_2026b
         public void stampa()
         {
             Console.WriteLine("Poligon ima {0} temena i ona su:", br_temena);
-            for(int i = 0; i < br_temena; i++)
+            for (int i = 0; i < br_temena; i++)
             {
                 Console.WriteLine("Tacka {0}: koordinata x = {1}, koordinata y = {2}", i + 1, teme[i].x, teme[i].y);
             }
@@ -43,7 +43,7 @@ namespace Poligon3_9_2026b
         {
             StreamWriter izlaz = new StreamWriter("poligon.txt");
             izlaz.WriteLine(br_temena);
-            for(int i = 0; i < br_temena; i++)
+            for (int i = 0; i < br_temena; i++)
             {
                 izlaz.WriteLine(teme[i].x);
                 izlaz.WriteLine(teme[i].y);
@@ -67,7 +67,7 @@ namespace Poligon3_9_2026b
         {
             Vektor a;
             double obim = 0;
-            for(int i = 0; i < br_temena-1; i++)
+            for (int i = 0; i < br_temena-1; i++)
             {
                 a = new Vektor(teme[i], teme[i+1]);
                 obim += a.duzina();
@@ -75,6 +75,66 @@ namespace Poligon3_9_2026b
             a = new Vektor(teme[br_temena-1], teme[0]);
             obim+= a.duzina();
             return obim;
+        }
+        public bool prost()
+        {
+            for (int i = 1; i < br_temena - 1; i++)
+            {
+                for (int j = i+1; j < br_temena; j++)
+                {
+                    if (Tacka.jednaka(teme[i], teme[j]))
+                    {
+                        return false;
+                    }
+                }
+            }
+            Vektor[] stranica = new Vektor[br_temena];
+            for (int i = 0; i < br_temena-1; i++)
+            {
+                stranica[i] = new Vektor(teme[i], teme[i + 1]);
+            }
+            stranica[br_temena - 1] = new Vektor(teme[br_temena - 1], teme[0]);
+            for (int i = 0; i < br_temena; i++)
+            {
+                int kraj;
+                if (i == 0) kraj = br_temena-1;
+                else kraj = br_temena;
+                    for (int j = i+2; j < kraj; j++)
+                    {
+                        if (Vektor.seku_se(stranica[i], stranica[j]))
+                        {
+                            return false;
+                        }
+                    }
+            }
+            return true;
+        }
+        public bool konveksan()
+        {
+            int brojac = 0;
+            for(int i = 0; i < br_temena; i++)
+            {
+                Vektor prvi = new Vektor (teme[i], teme[(i + 1) % br_temena]);
+                Vektor drugi = new Vektor(teme[(i + 1) % br_temena], teme[(i + 2) % br_temena]);
+                if (Vektor.VP(prvi, drugi) > 0) brojac++;
+            }
+            if (brojac == br_temena || brojac == 0) return true;
+            return false;
+        }
+        public double povrsina()
+        {
+            double plus = 0, minus = 0;
+            for(int i = 0; i < br_temena; i++)
+            {
+                plus += teme[i].x * teme[(i+1) % br_temena].y;
+                minus += teme[i].y * teme[(i + 1) % br_temena].x;
+            }
+            return Math.Abs(plus - minus)/2;
+        }
+        public bool tacka_u(Tacka T)
+        {
+
+            return false;
         }
     }
 }
