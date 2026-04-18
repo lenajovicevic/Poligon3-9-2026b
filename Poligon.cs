@@ -133,8 +133,30 @@ namespace Poligon3_9_2026b
         }
         public bool tacka_u(Tacka T)
         {
-
-            return false;
+            bool dalijeu = false;
+            Tacka kraj = new Tacka(int.MaxValue, T.y);
+            Vektor v = new Vektor(T, kraj);
+            int br = 0;
+            for (int i = 0; i < br_temena; i++)
+            {
+                if ((teme[i].y > T.y) != (T.y < teme[(i + 1) % br_temena].y))
+                {
+                    if ((teme[i].y == teme[(i + 1) % br_temena].y) && (teme[i].y == T.y))
+                    {
+                        if (Ravan.SIS(v, teme[(i - 1 + br_temena) % br_temena], teme[(i + 1) % br_temena]) == -1)
+                        {
+                            br++;
+                        }
+                    }
+                    double vrednost_str = teme[i].x + ((T.y - teme[i].y) * (teme[(i + 1) % br_temena].x - teme[i].x) / (teme[(i + 1) % br_temena].y - teme[i].y));
+                    if (vrednost_str > T.x)
+                    {
+                        br++;
+                    }
+                }
+            }
+            if (br % 2 != 0) { dalijeu = true; }
+            return dalijeu;
         }
     }
 }
